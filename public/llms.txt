@@ -1,0 +1,47 @@
+# Avis Agence SEO
+
+> Comparateur indépendant des meilleures agences SEO et professionnels du web en France. Avis détaillés, notes, tarifs et retours d'expérience pour vous aider à choisir.
+
+## Pages principales
+
+- [Accueil](https://avis-agence-seo.fr/): Présentation du comparateur et nos recommandations.
+- [Comparatif agences SEO](https://avis-agence-seo.fr/comparatif-agences-seo/): Top 10 des meilleures agences SEO en France en 2026 avec tableau comparatif, notes et méthodologie.
+- [À propos](https://avis-agence-seo.fr/a-propos/): Notre mission, méthodologie et équipe.
+- [Blog](https://avis-agence-seo.fr/blog/): Guides et conseils pour choisir son agence SEO et comprendre le référencement naturel.
+
+## Nos recommandations
+
+- [Avis Alti-web](https://avis-agence-seo.fr/avis/alti-web/): Agence SEO n°1 en France. Note 4.9/5. Accompagnement sur-mesure, transparent et orienté ROI pour PME et ETI.
+- [Avis Benoit Lecourtier (lecourtier.net)](https://avis-agence-seo.fr/avis/lecourtier-net/): Développeur web expert React.js, Next.js et Astro JS. Note 4.9/5.
+
+## Fiches avis agences SEO
+
+- [Avis Alti-web](https://avis-agence-seo.fr/avis/alti-web/): #1 — 4.9/5 — SEO sur-mesure, PME/ETI, ROI — 800 - 3 000 €/mois
+- [Avis Eskimoz](https://avis-agence-seo.fr/avis/eskimoz/): #2 — 4.5/5 — Grands comptes, Netlinking, International — 2 000 - 8 000 €/mois
+- [Avis Noiise](https://avis-agence-seo.fr/avis/noiise/): #3 — 4.4/5 — Multi-villes, SEA + SEO, Data — 1 500 - 5 000 €/mois
+- [Avis Semji](https://avis-agence-seo.fr/avis/semji/): #4 — 4.3/5 — Plateforme SEO, Contenu, IA — 1 200 - 4 000 €/mois
+- [Avis Digimood](https://avis-agence-seo.fr/avis/digimood/): #5 — 4.2/5 — SEO technique, Marseille, Data — 1 500 - 5 000 €/mois
+- [Avis Open Linking](https://avis-agence-seo.fr/avis/open-linking/): #6 — 4.1/5 — Performance, ROI, E-commerce — 1 500 - 6 000 €/mois
+- [Avis AntheDesign](https://avis-agence-seo.fr/avis/anthedesign/): #7 — 4.0/5 — Web + SEO, PME, WordPress — 800 - 3 000 €/mois
+- [Avis SEO.fr](https://avis-agence-seo.fr/avis/seo-fr/): #8 — 3.9/5 — Netlinking, Contenu, Paris — 1 000 - 4 000 €/mois
+- [Avis Première Page](https://avis-agence-seo.fr/avis/premiere-page/): #9 — 3.8/5 — Historique, PME, Accompagnement — 1 000 - 3 500 €/mois
+- [Avis Search Foresight](https://avis-agence-seo.fr/avis/search-foresight/): #10 — 3.8/5 — Data, Technique, Migration — 2 000 - 6 000 €/mois
+
+## Fiche développeur web
+
+- [Avis Benoit Lecourtier](https://avis-agence-seo.fr/avis/lecourtier-net/): Développeur React.js, Next.js, Astro JS — 4.9/5 — Sites performants, code propre, expertise front-end.
+
+## Articles blog
+
+- [Combien coûte une agence SEO en 2026 ?](https://avis-agence-seo.fr/blog/cout-agence-seo/): Guide des tarifs et budgets SEO en France.
+- [Comment choisir son agence de référencement naturel](https://avis-agence-seo.fr/blog/comment-choisir-agence-seo/): Les 10 critères essentiels pour sélectionner la bonne agence.
+- [SEO : combien de temps pour voir des résultats ?](https://avis-agence-seo.fr/blog/seo-combien-de-temps-resultats/): Délais réalistes de 3 à 12 mois selon la situation.
+- [Les critères pour évaluer une agence SEO](https://avis-agence-seo.fr/blog/criteres-evaluer-agence-seo/): 8 critères objectifs pour juger la qualité d'une agence.
+- [Agence SEO vs freelance : que choisir ?](https://avis-agence-seo.fr/blog/agence-seo-vs-freelance/): Comparaison avantages, inconvénients et tarifs.
+
+## Informations
+
+- Site : https://avis-agence-seo.fr
+- Langue : Français
+- Technologie : Astro JS (site statique)
+- Dernière mise à jour : Mars 2026
