@@ -1,0 +1,26 @@
+[
+  {
+    "author": "Claire B.",
+    "rating": 5,
+    "date": "2025-10-22",
+    "comment": "Benoit a développé notre site vitrine avec Astro JS et le résultat est bluffant : score Lighthouse à 99, chargement instantané. Sa maîtrise technique est vraiment impressionnante et la communication impeccable."
+  },
+  {
+    "author": "Julien P.",
+    "rating": 5,
+    "date": "2025-12-08",
+    "comment": "Nous avions besoin d'un expert React/Next.js pour notre plateforme SaaS. Benoit a livré un code propre, bien architecturé et documenté. Il a même anticipé des besoins qu'on n'avait pas identifiés."
+  },
+  {
+    "author": "Nathalie G.",
+    "rating": 5,
+    "date": "2026-01-30",
+    "comment": "Refonte complète de notre site sous Next.js. Le SEO technique est irréprochable et les performances web excellentes. Benoit est un développeur rigoureux qui livre toujours dans les temps."
+  },
+  {
+    "author": "Alexandre F.",
+    "rating": 4,
+    "date": "2026-03-01",
+    "comment": "Excellent développeur front-end, très réactif et force de proposition. Le seul point d'attention est sa disponibilité car il est très demandé, mais la qualité du travail vaut largement l'attente."
+  }
+]

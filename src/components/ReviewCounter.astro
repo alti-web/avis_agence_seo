@@ -1,0 +1,39 @@
+---
+interface Props {
+  count: number;
+  average: number;
+}
+
+const { count, average } = Astro.props;
+const displayAverage = average.toFixed(1);
+---
+
+<div class="review-counter">
+  <span class="review-counter__stars">★</span>
+  <span class="review-counter__avg">{displayAverage}/5</span>
+  <span class="review-counter__sep">—</span>
+  <span class="review-counter__count">{count} avis clients</span>
+</div>
+
+<style>
+  .review-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #fef3c7;
+    color: #92400e;
+    padding: 0.35rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .review-counter__stars {
+    color: #f59e0b;
+  }
+
+  .review-counter__sep {
+    opacity: 0.5;
+  }
+</style>

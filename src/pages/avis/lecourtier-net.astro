@@ -3,6 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import RatingStars from '../../components/RatingStars.astro';
 import Faq from '../../components/Faq.astro';
+import ReviewCounter from '../../components/ReviewCounter.astro';
+import ClientReviews from '../../components/ClientReviews.astro';
+import clientReviews from '../../data/reviews-lecourtier.json';
 
 const dev = {
   name: 'Benoit Lecourtier',
@@ -57,6 +60,8 @@ const faqItems = [
   }
 ];
 
+const reviewAvg = clientReviews.reduce((sum: number, r: any) => sum + r.rating, 0) / clientReviews.length;
+
 const reviewSchema = {
   "@context": "https://schema.org",
   "@type": "Review",
@@ -100,6 +105,7 @@ const reviewSchema = {
         <h1>Avis Benoit Lecourtier (lecourtier.net) — Développeur web</h1>
         <RatingStars rating={dev.rating} />
         <p class="agency-meta">{dev.city} · Depuis {dev.founded} · Développeur indépendant</p>
+        <ReviewCounter count={clientReviews.length} average={reviewAvg} />
       </div>
     </div>
 
@@ -192,6 +198,8 @@ const reviewSchema = {
         En tant que développeur maîtrisant Astro JS et Next.js, Benoit Lecourtier a une compréhension fine des enjeux SEO techniques : Core Web Vitals, temps de chargement, rendu serveur, balisage sémantique. C'est un profil idéal pour les entreprises qui veulent un site à la fois techniquement irréprochable et bien positionné sur Google. D'ailleurs, de nombreuses <a href="/comparatif-agences-seo/">agences SEO</a> font appel à des développeurs de ce calibre pour la partie technique de leurs projets.
       </p>
     </div>
+
+    <ClientReviews reviews={clientReviews} entityName="Benoit Lecourtier" />
 
     <section class="verdict-box card">
       <h2>Notre verdict sur Benoit Lecourtier</h2>

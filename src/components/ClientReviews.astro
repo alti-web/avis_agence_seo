@@ -1,0 +1,114 @@
+---
+import RatingStars from './RatingStars.astro';
+
+interface Review {
+  author: string;
+  rating: number;
+  date: string;
+  comment: string;
+}
+
+interface Props {
+  reviews: Review[];
+  entityName: string;
+}
+
+const { reviews, entityName } = Astro.props;
+
+const sortedReviews = [...reviews].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+const average = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+
+function formatDate(dateStr: string): string {
+  return new Date(dateStr).toLocaleDateString('fr-FR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<section class="client-reviews section">
+  <h2>Avis clients sur {entityName}</h2>
+  <p class="client-reviews__summary">
+    <strong>{average.toFixed(1)}/5</strong> basé sur <strong>{reviews.length} avis</strong>
+  </p>
+  <div class="client-reviews__list">
+    {sortedReviews.map(review => (
+      <div class="client-review card">
+        <div class="client-review__header">
+          <div class="client-review__author">
+            <span class="client-review__avatar">{review.author.charAt(0)}</span>
+            <div>
+              <strong>{review.author}</strong>
+              <time datetime={review.date}>{formatDate(review.date)}</time>
+            </div>
+          </div>
+          <RatingStars rating={review.rating} />
+        </div>
+        <p class="client-review__comment">{review.comment}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .client-reviews__summary {
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .client-reviews__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .client-review {
+    padding: 1.2rem;
+  }
+
+  .client-review__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .client-review__author {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .client-review__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: white;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .client-review__author strong {
+    display: block;
+    font-size: 0.95rem;
+  }
+
+  .client-review__author time {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .client-review__comment {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+</style>

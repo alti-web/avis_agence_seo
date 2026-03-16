@@ -3,7 +3,10 @@ import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import RatingStars from '../../components/RatingStars.astro';
 import Faq from '../../components/Faq.astro';
+import ReviewCounter from '../../components/ReviewCounter.astro';
+import ClientReviews from '../../components/ClientReviews.astro';
 import { getCollection } from 'astro:content';
+import altiWebReviews from '../../data/reviews-alti-web.json';
 
 export async function getStaticPaths() {
   const agences = await getCollection('agences');
@@ -17,6 +20,16 @@ const { agence } = Astro.props;
 const { Content } = await (await import('astro:content')).render(agence);
 const allAgences = (await getCollection('agences')).sort((a, b) => a.data.rank - b.data.rank);
 const alternatives = allAgences.filter(a => agence.data.alternatives.includes(a.data.slug));
+
+// Client reviews (only for agencies that have them)
+const reviewsMap: Record<string, any[]> = {
+  'alti-web': altiWebReviews,
+};
+const clientReviews = reviewsMap[agence.data.slug] || [];
+const hasClientReviews = clientReviews.length > 0;
+const reviewAvg = hasClientReviews
+  ? clientReviews.reduce((sum: number, r: any) => sum + r.rating, 0) / clientReviews.length
+  : 0;
 
 const reviewSchema = {
   "@context": "https://schema.org",
@@ -61,6 +74,7 @@ const reviewSchema = {
         <h1>Avis {agence.data.name} — Notre analyse complète</h1>
         <RatingStars rating={agence.data.rating} />
         <p class="agency-meta">{agence.data.city} · Fondée en {agence.data.founded} · {agence.data.teamSize}</p>
+        {hasClientReviews && <ReviewCounter count={clientReviews.length} average={reviewAvg} />}
       </div>
     </div>
 
@@ -107,6 +121,8 @@ const reviewSchema = {
     <div class="article-content">
       <Content />
     </div>
+
+    {hasClientReviews && <ClientReviews reviews={clientReviews} entityName={agence.data.name} />}
 
     <section class="verdict-box card">
       <h2>Notre verdict</h2>
