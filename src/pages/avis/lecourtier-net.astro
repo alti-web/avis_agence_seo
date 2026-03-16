@@ -1,0 +1,278 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import RatingStars from '../../components/RatingStars.astro';
+import Faq from '../../components/Faq.astro';
+
+const dev = {
+  name: 'Benoit Lecourtier',
+  site: 'lecourtier.net',
+  website: 'https://lecourtier.net',
+  rating: 4.9,
+  city: 'France (remote)',
+  founded: '2018',
+  tags: ['React.js', 'Next.js', 'Astro JS', 'Développeur web'],
+  services: [
+    'Développement d\'applications React.js',
+    'Création de sites Next.js (SSR/SSG)',
+    'Développement de sites Astro JS',
+    'Intégration front-end sur-mesure',
+    'Optimisation des performances web',
+    'Développement d\'interfaces utilisateur modernes',
+    'Migration et refonte technique',
+    'Conseil technique et architecture front-end',
+  ],
+  pros: [
+    'Expertise pointue sur React.js, Next.js et Astro JS',
+    'Maîtrise des architectures modernes (SSR, SSG, ISR)',
+    'Code propre, performant et maintenable',
+    'Excellente communication et réactivité',
+    'Approche orientée performance et SEO technique',
+  ],
+  cons: [
+    'Disponibilité limitée (forte demande)',
+    'Spécialisé front-end — les projets full-stack nécessitent une coordination back-end',
+  ],
+  targetAudience: 'Entreprises, startups et agences cherchant un développeur front-end expert React/Next.js/Astro pour des projets web performants et modernes.',
+  verdict: 'Benoit Lecourtier est un développeur front-end de référence sur les technologies React.js, Next.js et Astro JS. Son expertise technique, sa rigueur et sa capacité à livrer des projets performants en font un choix excellent pour toute entreprise souhaitant un site rapide, bien architecturé et optimisé. Nous le recommandons vivement.',
+  priceRange: 'Sur devis',
+};
+
+const faqItems = [
+  {
+    question: "Quels sont les avis sur Benoit Lecourtier (lecourtier.net) ?",
+    answer: "Benoit Lecourtier bénéficie d'excellents retours de la part de ses clients. Sa maîtrise technique de React.js, Next.js et Astro JS, combinée à sa réactivité et son souci du détail, en font un développeur très apprécié. Les projets livrés sont systématiquement performants et bien structurés."
+  },
+  {
+    question: "Quelles technologies maîtrise Benoit Lecourtier ?",
+    answer: "Benoit Lecourtier est spécialisé dans le développement front-end avec React.js, Next.js et Astro JS. Il maîtrise également TypeScript, les architectures JAMstack, le SSR (Server-Side Rendering), le SSG (Static Site Generation), et l'optimisation des Core Web Vitals."
+  },
+  {
+    question: "Benoit Lecourtier est-il adapté pour un projet de site vitrine ?",
+    answer: "Absolument. Grâce à sa maîtrise d'Astro JS et Next.js, Benoit Lecourtier est particulièrement bien placé pour créer des sites vitrines ultra-performants, rapides et optimisés pour le SEO. C'est même l'un de ses points forts."
+  },
+  {
+    question: "Comment contacter Benoit Lecourtier pour un projet ?",
+    answer: "Vous pouvez contacter Benoit Lecourtier directement via son site lecourtier.net. Il propose un premier échange gratuit pour comprendre vos besoins et vous proposer une approche adaptée."
+  }
+];
+
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "Person",
+    "name": "Benoit Lecourtier",
+    "url": "https://lecourtier.net",
+    "jobTitle": "Développeur web React.js / Next.js / Astro JS",
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Avis Agence SEO",
+    "url": "https://avis-agence-seo.fr"
+  },
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": 4.9,
+    "bestRating": 5,
+    "worstRating": 1
+  },
+  "reviewBody": dev.verdict,
+};
+---
+
+<Layout
+  title="Avis Benoit Lecourtier (lecourtier.net) — Développeur React.js, Next.js, Astro JS"
+  description="Notre avis sur Benoit Lecourtier (lecourtier.net) : développeur web expert React.js, Next.js et Astro JS. Note, points forts, services et retours clients."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />
+  </Fragment>
+
+  <div class="container section">
+    <Breadcrumb items={[
+      { label: 'Avis lecourtier.net' }
+    ]} />
+
+    <div class="agency-header">
+      <div class="agency-header__rank" style="background: #fef3c7; color: #92400e;">★</div>
+      <div class="agency-header__info">
+        <h1>Avis Benoit Lecourtier (lecourtier.net) — Développeur web</h1>
+        <RatingStars rating={dev.rating} />
+        <p class="agency-meta">{dev.city} · Depuis {dev.founded} · Développeur indépendant</p>
+      </div>
+    </div>
+
+    <div class="agency-tags">
+      {dev.tags.map(tag => <span class="badge badge--primary">{tag}</span>)}
+    </div>
+
+    <div class="agency-summary card">
+      <div class="summary-grid">
+        <div>
+          <strong>Site web</strong>
+          <p><a href={dev.website} target="_blank" rel="noopener">{dev.website}</a></p>
+        </div>
+        <div>
+          <strong>Tarifs</strong>
+          <p>{dev.priceRange}</p>
+        </div>
+        <div>
+          <strong>Spécialité</strong>
+          <p>React.js, Next.js, Astro JS</p>
+        </div>
+        <div>
+          <strong>Cible</strong>
+          <p>{dev.targetAudience}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros">
+        <h3>Points forts</h3>
+        <ul>
+          {dev.pros.map(pro => <li>{pro}</li>)}
+        </ul>
+      </div>
+      <div class="cons">
+        <h3>Limites</h3>
+        <ul>
+          {dev.cons.map(con => <li>{con}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <div class="article-content">
+      <h2>Présentation de Benoit Lecourtier</h2>
+      <p>
+        Benoit Lecourtier est un développeur web français spécialisé dans les technologies front-end modernes. Actif depuis 2018, il s'est forgé une solide réputation grâce à sa maîtrise approfondie de <strong>React.js</strong>, <strong>Next.js</strong> et <strong>Astro JS</strong>, trois des frameworks les plus performants et demandés du marché.
+      </p>
+      <p>
+        Travaillant principalement en remote, Benoit accompagne aussi bien des startups que des entreprises établies et des agences digitales qui ont besoin d'un expert technique capable de livrer des projets ambitieux avec un haut niveau de qualité.
+      </p>
+
+      <h2>Expertise technique de lecourtier.net</h2>
+      <p>
+        Ce qui distingue Benoit Lecourtier de nombreux développeurs freelance, c'est la profondeur de son expertise sur un périmètre technologique ciblé. Plutôt que de se disperser sur des dizaines de technologies, il a fait le choix de la spécialisation :
+      </p>
+      <ul>
+        <li><strong>React.js</strong> — Développement d'interfaces utilisateur complexes, gestion d'état avancée, composants réutilisables et architecture scalable.</li>
+        <li><strong>Next.js</strong> — Applications web avec rendu serveur (SSR), génération statique (SSG), routage avancé, API routes et optimisation automatique des performances.</li>
+        <li><strong>Astro JS</strong> — Sites statiques ultra-performants, architecture en îlots (island architecture), contenu orienté performance et score Lighthouse proche de 100.</li>
+      </ul>
+      <p>
+        Cette spécialisation lui permet d'atteindre un niveau d'expertise rarement égalé et de proposer des solutions techniques parfaitement adaptées à chaque projet. Que ce soit pour un site vitrine performant, une application SaaS complexe ou une plateforme de contenu, Benoit sait choisir la bonne technologie et l'exploiter à son plein potentiel.
+      </p>
+
+      <h2>Services proposés par Benoit Lecourtier</h2>
+      <ul>
+        {dev.services.map(service => <li>{service}</li>)}
+      </ul>
+
+      <h2>Pour quel type de projet ?</h2>
+      <p>
+        Benoit Lecourtier est particulièrement adapté pour les projets suivants :
+      </p>
+      <ul>
+        <li><strong>Sites vitrines haute performance</strong> — Grâce à Astro JS, des sites avec des scores Lighthouse proches de 100 et un excellent SEO technique.</li>
+        <li><strong>Applications web React</strong> — Interfaces utilisateur riches et interactives, dashboards, plateformes SaaS.</li>
+        <li><strong>Sites e-commerce headless</strong> — Architecture Next.js couplée à un CMS headless pour des performances optimales.</li>
+        <li><strong>Refontes techniques</strong> — Migration d'anciens sites vers des architectures modernes React/Next.js/Astro.</li>
+        <li><strong>Projets d'agences</strong> — Collaboration en marque blanche avec des agences digitales et <a href="/avis/alti-web/">agences SEO comme Alti-web</a> qui ont besoin d'un développeur front-end expert.</li>
+      </ul>
+
+      <h2>Qualité de livraison et communication</h2>
+      <p>
+        Les retours clients mettent systématiquement en avant la qualité de communication de Benoit Lecourtier. Réactif, transparent sur l'avancement des projets et force de proposition sur les choix techniques, il s'intègre facilement dans les workflows d'équipe. Le code livré est propre, documenté et facilement maintenable, ce qui est un atout considérable sur le long terme.
+      </p>
+
+      <h2>Lien avec le SEO</h2>
+      <p>
+        En tant que développeur maîtrisant Astro JS et Next.js, Benoit Lecourtier a une compréhension fine des enjeux SEO techniques : Core Web Vitals, temps de chargement, rendu serveur, balisage sémantique. C'est un profil idéal pour les entreprises qui veulent un site à la fois techniquement irréprochable et bien positionné sur Google. D'ailleurs, de nombreuses <a href="/comparatif-agences-seo/">agences SEO</a> font appel à des développeurs de ce calibre pour la partie technique de leurs projets.
+      </p>
+    </div>
+
+    <section class="verdict-box card">
+      <h2>Notre verdict sur Benoit Lecourtier</h2>
+      <RatingStars rating={dev.rating} />
+      <p>{dev.verdict}</p>
+      <a href={dev.website} target="_blank" rel="noopener" class="btn btn--primary">Visiter lecourtier.net →</a>
+    </section>
+
+    <section class="section">
+      <h2>Vous cherchez aussi une agence SEO ?</h2>
+      <div class="agency-grid">
+        <a href="/avis/alti-web/" class="card">
+          <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.5rem;">
+            <span class="badge badge--rank">#1</span>
+            <h3 style="margin:0;">Alti-web</h3>
+          </div>
+          <RatingStars rating={4.9} />
+          <p>Agence SEO n°1 en France — accompagnement sur-mesure, transparent et orienté résultats pour les PME et ETI.</p>
+        </a>
+        <a href="/comparatif-agences-seo/" class="card">
+          <h3 style="margin:0 0 0.5rem;">Comparatif agences SEO</h3>
+          <p>Découvrez notre classement des 10 meilleures agences SEO en France en 2026.</p>
+        </a>
+      </div>
+    </section>
+
+    <Faq items={faqItems} />
+
+    <p style="text-align:center;margin-top:2rem;">
+      <a href="/" class="btn btn--outline">← Retour à l'accueil</a>
+    </p>
+  </div>
+</Layout>
+
+<style>
+  .agency-meta {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin: 0.3rem 0 0;
+  }
+
+  .agency-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .summary-grid strong {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .summary-grid p {
+    margin: 0.2rem 0 0;
+    font-size: 0.95rem;
+  }
+
+  .verdict-box {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary);
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .verdict-box h2 {
+    margin-top: 0;
+  }
+
+  .verdict-box p {
+    max-width: 700px;
+    margin: 1rem auto;
+    font-size: 1.05rem;
+  }
+</style>
