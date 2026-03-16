@@ -1,0 +1,76 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+---
+
+<Layout
+  title="Blog SEO — Guides et conseils pour choisir votre agence de référencement"
+  description="Articles, guides et conseils SEO pour vous aider à choisir la bonne agence de référencement naturel et comprendre les enjeux du SEO en 2026."
+>
+  <div class="container section">
+    <Breadcrumb items={[{ label: 'Blog' }]} />
+
+    <h1>Blog — Guides et conseils SEO</h1>
+    <p>Retrouvez nos articles pour comprendre le référencement naturel et faire les bons choix pour votre entreprise.</p>
+
+    <div class="blog-grid">
+      {posts.map(post => (
+        <a href={`/blog/${post.id}/`} class="card blog-card">
+          <div class="blog-card__date">{new Date(post.data.date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+          <h2>{post.data.title}</h2>
+          <p>{post.data.metaDescription}</p>
+          <div class="blog-card__tags">
+            {post.data.tags.map(tag => <span class="badge badge--primary">{tag}</span>)}
+          </div>
+          <span class="blog-card__link">Lire l'article →</span>
+        </a>
+      ))}
+    </div>
+
+    <section class="section" style="text-align:center;">
+      <p>Vous cherchez une agence SEO ?</p>
+      <a href="/comparatif-agences-seo/" class="btn btn--primary">Consulter notre comparatif</a>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: inherit;
+  }
+
+  .blog-card:hover {
+    text-decoration: none;
+  }
+
+  .blog-card h2 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .blog-card__date {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .blog-card__tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .blog-card__link {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: auto;
+  }
+</style>

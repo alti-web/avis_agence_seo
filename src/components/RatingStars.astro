@@ -1,0 +1,39 @@
+---
+interface Props {
+  rating: number;
+  max?: number;
+}
+
+const { rating, max = 5 } = Astro.props;
+const fullStars = Math.floor(rating);
+const hasHalf = rating % 1 >= 0.5;
+const emptyStars = max - fullStars - (hasHalf ? 1 : 0);
+---
+
+<span class="stars" aria-label={`Note : ${rating} sur ${max}`}>
+  {Array(fullStars).fill(null).map(() => <span>★</span>)}
+  {hasHalf && <span>★</span>}
+  {Array(emptyStars).fill(null).map(() => <span class="star--empty">☆</span>)}
+  <span class="rating-value">{rating}/{max}</span>
+</span>
+
+<style>
+  .stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 1px;
+    color: var(--color-star);
+    font-size: 1.2rem;
+  }
+
+  .star--empty {
+    color: #ddd;
+  }
+
+  .rating-value {
+    margin-left: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+</style>

@@ -1,0 +1,193 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import RatingStars from '../../components/RatingStars.astro';
+import Faq from '../../components/Faq.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const agences = await getCollection('agences');
+  return agences.map(agence => ({
+    params: { slug: agence.id },
+    props: { agence },
+  }));
+}
+
+const { agence } = Astro.props;
+const { Content } = await (await import('astro:content')).render(agence);
+const allAgences = (await getCollection('agences')).sort((a, b) => a.data.rank - b.data.rank);
+const alternatives = allAgences.filter(a => agence.data.alternatives.includes(a.data.slug));
+
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "Organization",
+    "name": agence.data.name,
+    "url": agence.data.website,
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Avis Agence SEO",
+    "url": "https://avis-agence-seo.fr"
+  },
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": agence.data.rating,
+    "bestRating": 5,
+    "worstRating": 1
+  },
+  "reviewBody": agence.data.verdict,
+};
+---
+
+<Layout
+  title={agence.data.metaTitle}
+  description={agence.data.metaDescription}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />
+  </Fragment>
+
+  <div class="container section">
+    <Breadcrumb items={[
+      { label: 'Comparatif', href: '/comparatif-agences-seo/' },
+      { label: `Avis ${agence.data.name}` }
+    ]} />
+
+    <div class="agency-header">
+      <div class="agency-header__rank">#{agence.data.rank}</div>
+      <div class="agency-header__info">
+        <h1>Avis {agence.data.name} — Notre analyse complète</h1>
+        <RatingStars rating={agence.data.rating} />
+        <p class="agency-meta">{agence.data.city} · Fondée en {agence.data.founded} · {agence.data.teamSize}</p>
+      </div>
+    </div>
+
+    <div class="agency-tags">
+      {agence.data.tags.map((tag: string) => <span class="badge badge--primary">{tag}</span>)}
+    </div>
+
+    <div class="agency-summary card">
+      <div class="summary-grid">
+        <div>
+          <strong>Site web</strong>
+          <p><a href={agence.data.website} target="_blank" rel="noopener">{agence.data.website}</a></p>
+        </div>
+        <div>
+          <strong>Tarifs</strong>
+          <p>{agence.data.priceRange}</p>
+        </div>
+        <div>
+          <strong>Équipe</strong>
+          <p>{agence.data.teamSize}</p>
+        </div>
+        <div>
+          <strong>Cible</strong>
+          <p>{agence.data.targetAudience}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros">
+        <h3>Points forts</h3>
+        <ul>
+          {agence.data.pros.map((pro: string) => <li>{pro}</li>)}
+        </ul>
+      </div>
+      <div class="cons">
+        <h3>Limites</h3>
+        <ul>
+          {agence.data.cons.map((con: string) => <li>{con}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <div class="article-content">
+      <Content />
+    </div>
+
+    <section class="verdict-box card">
+      <h2>Notre verdict</h2>
+      <RatingStars rating={agence.data.rating} />
+      <p>{agence.data.verdict}</p>
+      <a href="/comparatif-agences-seo/" class="btn btn--primary">Voir le comparatif complet</a>
+    </section>
+
+    {alternatives.length > 0 && (
+      <section class="section">
+        <h2>Alternatives à {agence.data.name}</h2>
+        <div class="agency-grid">
+          {alternatives.map(alt => (
+            <a href={`/avis/${alt.data.slug}/`} class="card">
+              <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.5rem;">
+                <span class="badge badge--rank">#{alt.data.rank}</span>
+                <h3 style="margin:0;">{alt.data.name}</h3>
+              </div>
+              <RatingStars rating={alt.data.rating} />
+              <p>{alt.data.shortDescription}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <Faq items={agence.data.faq} />
+
+    <p style="text-align:center;margin-top:2rem;">
+      <a href="/comparatif-agences-seo/" class="btn btn--outline">← Retour au comparatif</a>
+    </p>
+  </div>
+</Layout>
+
+<style>
+  .agency-meta {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin: 0.3rem 0 0;
+  }
+
+  .agency-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .summary-grid strong {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .summary-grid p {
+    margin: 0.2rem 0 0;
+    font-size: 0.95rem;
+  }
+
+  .verdict-box {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary);
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .verdict-box h2 {
+    margin-top: 0;
+  }
+
+  .verdict-box p {
+    max-width: 700px;
+    margin: 1rem auto;
+    font-size: 1.05rem;
+  }
+</style>

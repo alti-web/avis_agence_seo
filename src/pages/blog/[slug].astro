@@ -1,0 +1,118 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await (await import('astro:content')).render(post);
+const allPosts = (await getCollection('blog'))
+  .filter(p => p.id !== post.id)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3);
+---
+
+<Layout
+  title={post.data.metaTitle}
+  description={post.data.metaDescription}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": post.data.title,
+      "datePublished": post.data.date,
+      "author": {
+        "@type": "Organization",
+        "name": post.data.author,
+        "url": "https://avis-agence-seo.fr"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Avis Agence SEO",
+        "url": "https://avis-agence-seo.fr"
+      }
+    })} />
+  </Fragment>
+
+  <div class="container section">
+    <Breadcrumb items={[
+      { label: 'Blog', href: '/blog/' },
+      { label: post.data.title }
+    ]} />
+
+    <article class="article-content">
+      <header class="article-header">
+        <h1>{post.data.title}</h1>
+        <div class="article-meta">
+          <span>{new Date(post.data.date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+          <span>·</span>
+          <span>{post.data.author}</span>
+        </div>
+        <div class="article-tags">
+          {post.data.tags.map(tag => <span class="badge badge--primary">{tag}</span>)}
+        </div>
+      </header>
+
+      <Content />
+    </article>
+
+    <section class="cta-box card">
+      <h2>Trouvez votre agence SEO</h2>
+      <p>Consultez notre comparatif des meilleures agences SEO en France pour trouver celle qui correspond à vos besoins.</p>
+      <a href="/comparatif-agences-seo/" class="btn btn--primary">Voir le comparatif →</a>
+    </section>
+
+    {allPosts.length > 0 && (
+      <section class="section">
+        <h2>Articles similaires</h2>
+        <div class="blog-grid">
+          {allPosts.map(p => (
+            <a href={`/blog/${p.id}/`} class="card">
+              <h3 style="margin:0 0 0.5rem;">{p.data.title}</h3>
+              <p style="font-size:0.9rem;">{p.data.metaDescription}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+</Layout>
+
+<style>
+  .article-header {
+    margin-bottom: 2rem;
+  }
+
+  .article-meta {
+    display: flex;
+    gap: 0.5rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .article-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-box {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary);
+    text-align: center;
+    margin: 3rem 0 2rem;
+  }
+
+  .cta-box h2 {
+    margin-top: 0;
+  }
+</style>

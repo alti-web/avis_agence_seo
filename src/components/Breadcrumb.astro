@@ -1,0 +1,37 @@
+---
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+const allItems = [{ label: 'Accueil', href: '/' }, ...items];
+---
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  {allItems.map((item, i) => (
+    <>
+      {i > 0 && <span class="breadcrumb__sep">›</span>}
+      {item.href ? (
+        <a href={item.href}>{item.label}</a>
+      ) : (
+        <span>{item.label}</span>
+      )}
+    </>
+  ))}
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": allItems.map((item, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": item.label,
+    ...(item.href ? { "item": `https://avis-agence-seo.fr${item.href}` } : {})
+  }))
+})} />

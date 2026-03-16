@@ -1,0 +1,140 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RatingStars from '../components/RatingStars.astro';
+import AgencyCard from '../components/AgencyCard.astro';
+import Faq from '../components/Faq.astro';
+import { getCollection } from 'astro:content';
+
+const agences = (await getCollection('agences')).sort((a, b) => a.data.rank - b.data.rank);
+
+const faqItems = [
+  {
+    question: "Comment sont classées les agences SEO dans ce comparatif ?",
+    answer: "Notre classement repose sur plusieurs critères objectifs : qualité des résultats obtenus pour les clients, transparence de la méthodologie, rapport qualité-prix, réactivité du support, et avis clients vérifiés. Chaque agence est évaluée sur une échelle de 5 étoiles."
+  },
+  {
+    question: "Quelle est la meilleure agence SEO en France en 2026 ?",
+    answer: "Selon notre analyse, Alti-web se positionne en tête grâce à son excellent rapport qualité-prix, sa transparence exemplaire et la qualité de son accompagnement personnalisé. Consultez notre fiche détaillée pour en savoir plus."
+  },
+  {
+    question: "Combien coûte une agence SEO en moyenne ?",
+    answer: "Les tarifs varient de 800 € à plus de 8 000 €/mois selon la taille de l'agence, l'ampleur du projet et les services inclus. Les agences spécialisées de taille moyenne offrent souvent le meilleur rapport qualité-prix."
+  },
+  {
+    question: "Comment choisir entre ces agences SEO ?",
+    answer: "Le choix dépend de vos besoins spécifiques : budget, taille de votre entreprise, objectifs SEO, et niveau d'accompagnement souhaité. Nous recommandons de consulter nos fiches détaillées et de demander des devis à 2-3 agences avant de vous décider."
+  }
+];
+---
+
+<Layout
+  title="Top 10 des agences SEO en France — Comparatif 2026"
+  description="Comparatif des 10 meilleures agences SEO en France en 2026. Notes, avis détaillés, tarifs et services pour choisir la bonne agence de référencement naturel."
+>
+  <div class="container section">
+    <Breadcrumb items={[{ label: 'Comparatif agences SEO' }]} />
+
+    <h1>Top 10 des meilleures agences SEO en France (2026)</h1>
+    <p class="intro">
+      Vous cherchez une agence de référencement naturel fiable et performante ? Notre équipe a analysé et comparé les principales agences SEO françaises pour vous aider à faire le bon choix. Voici notre classement mis à jour en mars 2026, basé sur des critères objectifs : résultats clients, transparence, rapport qualité-prix et expertise technique.
+    </p>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Agence</th>
+            <th>Note</th>
+            <th>Ville</th>
+            <th>Tarifs</th>
+            <th>Spécialité</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {agences.map(agence => (
+            <tr>
+              <td><span class="badge badge--rank">#{agence.data.rank}</span></td>
+              <td><strong>{agence.data.name}</strong></td>
+              <td><RatingStars rating={agence.data.rating} /></td>
+              <td>{agence.data.city}</td>
+              <td>{agence.data.priceRange}</td>
+              <td>{agence.data.tags[0]}</td>
+              <td><a href={`/avis/${agence.data.slug}/`} class="btn btn--outline btn--sm">Avis →</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Analyse détaillée des agences SEO</h2>
+    <p>Cliquez sur chaque agence pour accéder à notre avis complet avec points forts, limites, tarifs et FAQ.</p>
+
+    <div class="agency-grid">
+      {agences.map(agence => (
+        <AgencyCard
+          rank={agence.data.rank}
+          name={agence.data.name}
+          slug={agence.data.slug}
+          rating={agence.data.rating}
+          description={agence.data.shortDescription}
+          tags={agence.data.tags}
+          price={agence.data.priceRange}
+        />
+      ))}
+    </div>
+
+    <section class="section">
+      <h2>Notre méthodologie de classement</h2>
+      <p>Pour établir ce comparatif, nous avons évalué chaque agence SEO sur les critères suivants :</p>
+      <ul>
+        <li><strong>Résultats clients vérifiables</strong> — Progression du trafic organique et des positions sur les mots-clés stratégiques.</li>
+        <li><strong>Transparence</strong> — Clarté des rapports, communication proactive et honnêteté sur les délais.</li>
+        <li><strong>Rapport qualité-prix</strong> — Adéquation entre les tarifs pratiqués et la valeur délivrée.</li>
+        <li><strong>Expertise technique</strong> — Maîtrise des aspects techniques du SEO (Core Web Vitals, architecture, crawl).</li>
+        <li><strong>Avis clients</strong> — Retours d'expérience collectés sur plusieurs plateformes.</li>
+        <li><strong>Innovation</strong> — Adoption des meilleures pratiques et outils récents.</li>
+      </ul>
+      <p>Consultez notre article <a href="/blog/criteres-evaluer-agence-seo/">Les critères pour évaluer une agence SEO</a> pour comprendre notre méthodologie en détail.</p>
+    </section>
+
+    <section class="section">
+      <h2>Guides utiles pour choisir votre agence</h2>
+      <div class="blog-grid">
+        <a href="/blog/comment-choisir-agence-seo/" class="card">
+          <h3>Comment choisir son agence SEO</h3>
+          <p>Les 10 critères essentiels pour ne pas se tromper.</p>
+        </a>
+        <a href="/blog/cout-agence-seo/" class="card">
+          <h3>Combien coûte une agence SEO ?</h3>
+          <p>Guide des tarifs et budgets en 2026.</p>
+        </a>
+        <a href="/blog/agence-seo-vs-freelance/" class="card">
+          <h3>Agence SEO vs Freelance</h3>
+          <p>Quelle option choisir pour votre entreprise ?</p>
+        </a>
+      </div>
+    </section>
+
+    <Faq items={faqItems} />
+  </div>
+</Layout>
+
+<style>
+  .intro {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 800px;
+  }
+
+  .btn--sm {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  table td, table th {
+    vertical-align: middle;
+  }
+</style>

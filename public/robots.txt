@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://avis-agence-seo.fr/sitemap-index.xml

@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AgencyCard from '../components/AgencyCard.astro';
+
+const topAgencies = [
+  {
+    rank: 1,
+    name: 'Alti-web',
+    slug: 'alti-web',
+    rating: 4.9,
+    description: 'Agence SEO spécialisée dans l\'accompagnement sur-mesure des PME et ETI. Approche ROI-driven et transparente.',
+    tags: ['SEO sur-mesure', 'PME/ETI', 'ROI'],
+    price: 'À partir de 800 €/mois',
+  },
+  {
+    rank: 2,
+    name: 'Eskimoz',
+    slug: 'eskimoz',
+    rating: 4.5,
+    description: 'Agence SEO de référence en France, forte expertise sur les projets d\'envergure et les grands comptes.',
+    tags: ['Grands comptes', 'Netlinking', 'Contenu'],
+    price: 'À partir de 2 000 €/mois',
+  },
+  {
+    rank: 3,
+    name: 'Noiise',
+    slug: 'noiise',
+    rating: 4.4,
+    description: 'Agence digitale multi-expertises présente dans plusieurs villes de France.',
+    tags: ['Multi-villes', 'SEA + SEO', 'Data'],
+    price: 'À partir de 1 500 €/mois',
+  },
+];
+---
+
+<Layout
+  title="Avis Agence SEO — Comparatif des meilleures agences de référencement en France (2026)"
+  description="Comparez les meilleures agences SEO en France grâce à nos avis détaillés, notes et retours d'expérience. Trouvez l'agence de référencement idéale pour votre entreprise."
+>
+  <section class="hero">
+    <div class="container">
+      <h1>Trouvez la meilleure agence SEO en France</h1>
+      <p>Notre équipe analyse, compare et note les agences de référencement naturel pour vous aider à faire le bon choix. Avis impartiaux, critères objectifs.</p>
+      <div class="hero__ctas">
+        <a href="/comparatif-agences-seo/" class="btn btn--primary">Voir le comparatif complet</a>
+        <a href="/blog/comment-choisir-agence-seo/" class="btn btn--outline">Comment choisir ?</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Top 3 des agences SEO en 2026</h2>
+      <p>Découvrez les agences les mieux notées selon nos critères d'évaluation : résultats clients, transparence, rapport qualité-prix et expertise technique.</p>
+      <div class="agency-grid">
+        {topAgencies.map(agency => (
+          <AgencyCard {...agency} />
+        ))}
+      </div>
+      <p style="text-align: center; margin-top: 2rem;">
+        <a href="/comparatif-agences-seo/" class="btn btn--outline">Voir les 10 agences →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <h2>Notre méthodologie</h2>
+      <div class="methodology-grid">
+        <div class="card">
+          <h3>Analyse approfondie</h3>
+          <p>Nous étudions chaque agence SEO selon des critères objectifs : expertise technique, qualité du contenu, stratégie de netlinking, outils utilisés et résultats démontrables.</p>
+        </div>
+        <div class="card">
+          <h3>Retours clients</h3>
+          <p>Nous recueillons et analysons les avis clients vérifiés sur plusieurs plateformes pour vous offrir une vision complète de la satisfaction client de chaque agence.</p>
+        </div>
+        <div class="card">
+          <h3>Transparence tarifaire</h3>
+          <p>Nous comparons les grilles tarifaires et le rapport qualité-prix pour vous aider à trouver l'agence qui correspond à votre budget et vos objectifs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Derniers articles</h2>
+      <div class="blog-grid">
+        <a href="/blog/comment-choisir-agence-seo/" class="card">
+          <h3>Comment choisir son agence de référencement naturel</h3>
+          <p>Les critères essentiels pour sélectionner l'agence SEO qui correspond à vos besoins et votre budget.</p>
+        </a>
+        <a href="/blog/cout-agence-seo/" class="card">
+          <h3>Combien coûte une agence SEO en 2026 ?</h3>
+          <p>Décryptage des tarifs pratiqués par les agences de référencement en France.</p>
+        </a>
+        <a href="/blog/seo-combien-de-temps-resultats/" class="card">
+          <h3>SEO : combien de temps pour voir des résultats ?</h3>
+          <p>Délais réalistes et facteurs qui influencent la rapidité des résultats SEO.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero__ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .methodology-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+import RatingStars from './RatingStars.astro';
+
+interface Props {
+  rank: number;
+  name: string;
+  slug: string;
+  rating: number;
+  description: string;
+  tags: string[];
+  price?: string;
+}
+
+const { rank, name, slug, rating, description, tags, price } = Astro.props;
+---
+
+<a href={`/avis/${slug}/`} class="card agency-card">
+  <div class="agency-card__header">
+    <span class="badge badge--rank">#{rank}</span>
+    <div class="agency-card__title">
+      <h3>{name}</h3>
+      <RatingStars rating={rating} />
+    </div>
+  </div>
+  <p class="agency-card__desc">{description}</p>
+  <div class="agency-card__tags">
+    {tags.map(tag => <span class="badge badge--primary">{tag}</span>)}
+  </div>
+  {price && <p class="agency-card__price">{price}</p>}
+  <span class="btn btn--outline agency-card__cta">Lire l'avis complet →</span>
+</a>
+
+<style>
+  .agency-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .agency-card:hover {
+    text-decoration: none;
+  }
+
+  .agency-card__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .agency-card__title h3 {
+    margin: 0 0 0.3rem;
+    color: var(--color-text);
+  }
+
+  .agency-card__desc {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .agency-card__tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .agency-card__price {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .agency-card__cta {
+    margin-top: auto;
+    text-align: center;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+</style>

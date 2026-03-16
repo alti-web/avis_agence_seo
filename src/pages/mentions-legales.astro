@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<Layout
+  title="Mentions légales — Avis Agence SEO"
+  description="Mentions légales du site avis-agence-seo.fr, comparateur indépendant d'agences de référencement naturel en France."
+>
+  <div class="container section">
+    <Breadcrumb items={[{ label: 'Mentions légales' }]} />
+
+    <h1>Mentions légales</h1>
+
+    <div class="legal-content">
+      <h2>Éditeur du site</h2>
+      <p>
+        Le site avis-agence-seo.fr est édité par un éditeur indépendant.<br />
+        Contact : contact@avis-agence-seo.fr
+      </p>
+
+      <h2>Hébergement</h2>
+      <p>
+        Le site est hébergé par :<br />
+        Les informations d'hébergement seront mises à jour prochainement.
+      </p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>
+        L'ensemble du contenu de ce site (textes, analyses, graphiques, logo) est protégé par le droit d'auteur. Toute reproduction, même partielle, est soumise à autorisation préalable de l'éditeur.
+      </p>
+
+      <h2>Données personnelles</h2>
+      <p>
+        Ce site ne collecte aucune donnée personnelle. Aucun cookie de tracking n'est utilisé. Le site est purement informatif et ne propose aucun formulaire de collecte de données.
+      </p>
+
+      <h2>Avertissement</h2>
+      <p>
+        Les avis et analyses publiés sur ce site reflètent l'opinion de notre équipe éditoriale basée sur des critères objectifs. Ils ne constituent pas un conseil professionnel personnalisé. Nous recommandons de toujours demander plusieurs devis et de vérifier les références avant de choisir une agence SEO.
+      </p>
+
+      <h2>Liens externes</h2>
+      <p>
+        Ce site contient des liens vers des sites tiers. Nous ne sommes pas responsables du contenu de ces sites externes. La présence de ces liens ne constitue pas une validation de leur contenu.
+      </p>
+
+      <h2>Mise à jour</h2>
+      <p>
+        Dernière mise à jour : mars 2026.
+      </p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .legal-content {
+    max-width: 750px;
+  }
+
+  .legal-content h2 {
+    margin-top: 2rem;
+  }
+</style>

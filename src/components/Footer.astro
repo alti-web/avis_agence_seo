@@ -1,0 +1,107 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__main">
+      <div class="site-footer__brand">
+        <span class="logo-icon">★</span> Avis Agence SEO
+        <p>Comparateur indépendant d'agences de référencement naturel en France. Notre mission : vous aider à choisir la bonne agence SEO.</p>
+      </div>
+      <div class="site-footer__links">
+        <h4>Navigation</h4>
+        <a href="/comparatif-agences-seo/">Comparatif agences SEO</a>
+        <a href="/blog/">Blog</a>
+        <a href="/a-propos/">À propos</a>
+        <a href="/mentions-legales/">Mentions légales</a>
+      </div>
+      <div class="site-footer__links">
+        <h4>Top agences</h4>
+        <a href="/avis/alti-web/">Avis Alti-web</a>
+        <a href="/avis/eskimoz/">Avis Eskimoz</a>
+        <a href="/avis/noiise/">Avis Noiise</a>
+        <a href="/avis/semji/">Avis Semji</a>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <p>&copy; {year} avis-agence-seo.fr — Tous droits réservés</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-text);
+    color: #ccc;
+    margin-top: 3rem;
+  }
+
+  .site-footer__inner {
+    padding-top: 3rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .site-footer__main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .site-footer__brand {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+
+  .site-footer__brand p {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #999;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .logo-icon {
+    color: var(--color-accent);
+  }
+
+  .site-footer__links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .site-footer__links h4 {
+    color: #fff;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .site-footer__links a {
+    color: #999;
+    font-size: 0.9rem;
+  }
+
+  .site-footer__links a:hover {
+    color: #fff;
+  }
+
+  .site-footer__bottom {
+    border-top: 1px solid #333;
+    padding-top: 1.5rem;
+    text-align: center;
+  }
+
+  .site-footer__bottom p {
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  @media (max-width: 768px) {
+    .site-footer__main {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

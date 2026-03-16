@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<Layout
+  title="À propos — Avis Agence SEO, comparateur indépendant"
+  description="Découvrez qui nous sommes et notre mission : vous aider à choisir la meilleure agence SEO en France grâce à des avis objectifs et des analyses détaillées."
+>
+  <div class="container section">
+    <Breadcrumb items={[{ label: 'À propos' }]} />
+
+    <h1>À propos d'Avis Agence SEO</h1>
+
+    <div class="about-content">
+      <h2>Notre mission</h2>
+      <p>
+        Avis Agence SEO est un comparateur indépendant dédié aux agences de référencement naturel en France. Notre objectif est simple : vous aider à trouver l'agence SEO qui correspond réellement à vos besoins, votre budget et vos ambitions.
+      </p>
+      <p>
+        Face à la multitude d'offres sur le marché du référencement, il est souvent difficile de s'y retrouver. Les promesses se ressemblent, les tarifs varient énormément, et les résultats ne sont pas toujours au rendez-vous. C'est pourquoi nous avons créé ce site : pour apporter de la clarté et de la transparence dans un secteur qui en manque parfois.
+      </p>
+
+      <h2>Notre méthodologie</h2>
+      <p>
+        Chaque agence référencée sur notre site fait l'objet d'une analyse approfondie basée sur des critères objectifs et mesurables :
+      </p>
+      <ul>
+        <li><strong>Résultats clients</strong> — Nous étudions les cas clients publics, les témoignages vérifiés et les résultats SEO documentés.</li>
+        <li><strong>Transparence</strong> — Nous évaluons la clarté de la communication, la qualité des rapports et l'honnêteté sur les délais et les limites.</li>
+        <li><strong>Rapport qualité-prix</strong> — Nous comparons les tarifs pratiqués avec la valeur réellement délivrée.</li>
+        <li><strong>Expertise technique</strong> — Nous analysons la maîtrise des aspects techniques du SEO et l'utilisation d'outils professionnels.</li>
+        <li><strong>Avis clients</strong> — Nous collectons et recoupons les retours d'expérience sur plusieurs plateformes.</li>
+      </ul>
+
+      <h2>Notre équipe</h2>
+      <p>
+        Notre équipe est composée de professionnels du marketing digital et du référencement naturel. Forts de plusieurs années d'expérience dans le secteur, nous connaissons les bonnes pratiques, les pièges à éviter et les critères qui font la différence entre une agence SEO moyenne et une agence excellente.
+      </p>
+
+      <h2>Notre engagement</h2>
+      <p>
+        Nous nous engageons à maintenir nos avis à jour et à les réviser régulièrement en fonction de l'évolution des agences et des retours de nos lecteurs. Si vous avez eu une expérience avec l'une des agences référencées, n'hésitez pas à nous la partager.
+      </p>
+
+      <div class="cta-section">
+        <p>Prêt à trouver votre agence SEO ?</p>
+        <a href="/comparatif-agences-seo/" class="btn btn--primary">Consulter notre comparatif</a>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .about-content {
+    max-width: 750px;
+  }
+
+  .cta-section {
+    margin-top: 3rem;
+    text-align: center;
+    padding: 2rem;
+    background: var(--color-bg-alt);
+    border-radius: var(--radius);
+  }
+</style>
